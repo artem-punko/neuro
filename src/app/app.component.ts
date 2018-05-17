@@ -26,6 +26,8 @@ export class AppComponent implements OnInit {
   runNeataptic1;
   data;
   datas;
+  msgs: any;
+
   constructor(
     private neuroService: NeuroService
   ) { }
@@ -34,6 +36,13 @@ export class AppComponent implements OnInit {
     this.initGraph();
     this.normalization();
   }
+
+  selectData(event) {
+    this.msgs = [];
+    this.msgs.push({ severity: 'info',
+    summary: 'Data Selected',
+    'detail': this.datas.datasets[event.element._datasetIndex].data[event.element._index] });
+}
 
   neuro(type) {
     this.neuroService.neuro(type, this.firstParameter, this.secondParameter, this.thirdParameter).subscribe(success => {

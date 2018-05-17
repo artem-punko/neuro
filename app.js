@@ -7,11 +7,20 @@ var cors = require('cors');
 
 var neuro = require('./routes/neuro');
 var app = express();
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
 app.use(cors({origin: 'http://localhost:8080'}));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
+app.use('/profile', express.static(path.join(__dirname, 'dist')));
+
 app.use('/neuro', neuro);
 
 

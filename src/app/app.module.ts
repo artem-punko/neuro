@@ -18,6 +18,10 @@ import { NeuroService } from './services/neuro.service';
 // routing
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   {
+    path: 'profile',
+    component: AppComponent
+  },
+  {
     path: '',
     redirectTo: 'profile',
     pathMatch: 'full'

@@ -8,6 +8,6 @@ export class NeuroService {
   constructor(private http: HttpClient) { }
 
   neuro(type, one, two, three) {
-    return this.http.get('http://localhost:3001/neuro/' + type + '/' + one + '/' + two + '/' + three);
+    return this.http.get('/neuro/' + type + '/' + one + '/' + two + '/' + three);
   }
 }
