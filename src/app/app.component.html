@@ -13,27 +13,27 @@
             <span *ngIf="trainBrain">Нейронная сеть обучена (Brain)</span>
         </button>
         <button [hidden]="!trainBrain" [disabled]="runBrain" class="btn btn-default btn-md" (click)="runBrainNeuro()">
-            <span *ngIf="!runBrain">Расчитать обучающую выборку (Brain)</span>
-            <span *ngIf="runBrain">Обучающая выборка расчитана (Brain)</span>
+            <span *ngIf="!runBrain">Расcчитать обучающую выборку (Brain)</span>
+            <span *ngIf="runBrain">Обучающая выборка расcчитана (Brain)</span>
         </button>
         <div [hidden]="!trainBrain" class="col-md-6">
             <br>
             <label>К - коэффициент жесткости массива грунта, МН/м3</label>
-            <input type="number" class="form-control" [(ngModel)]="firstParameter">
+            <input type="number" min="0" max="5000" step="1" class="form-control" [(ngModel)]="firstParameter">
             <br>
             <label>е - коэффициент пористости грунта</label>
-            <input type="number" class="form-control" [(ngModel)]="secondParameter">
+            <input type="number" min="0" max="1.3" step="0.1" class="form-control" [(ngModel)]="secondParameter">
             <br>
             <label>d50 - средний диаметр частиц грунта, м</label>
-            <input type="number" class="form-control" [(ngModel)]="thirdParameter">
+            <input type="number" min="0.0001" max="0.01" step="0.0001" class="form-control" [(ngModel)]="thirdParameter">
             <br>
             <label *ngIf="runBrain1">Gdmax = {{runBrain1.output[0]}}</label>
             <br>
             <label *ngIf="middleRunBrain">Среднее среднеквадратичное отклонение = {{middleRunBrain}}</label>
             <br>
-            <button class="btn btn-default btn-md" [disabled]="firstParameter===null || secondParameter===null || thirdParameter===null"
+            <button class="btn btn-default btn-md" [disabled]="firstParameter>5000 || firstParameter<0 || secondParameter>1.3 || secondParameter<0 || thirdParameter<0.0001 || thirdParameter>0.1 || firstParameter===null || secondParameter===null || thirdParameter===null"
                 (click)="myselfRunBrainNeuro()">
-                <span>Расчитать Gdmax (Brain)</span>
+                <span>Расcчитать Gdmax (Brain)</span>
             </button>
         </div>
     </p-accordionTab>
@@ -43,26 +43,27 @@
             <span *ngIf="trainMl">Нейронная сеть обучена (Machine learning)</span>
         </button>
         <button [hidden]="!trainMl" [disabled]="runMl" class="btn btn-default btn-md" (click)="runMlNeuro()">
-            <span *ngIf="!runMl">Расчитать обучающую выборку (Machine learning)</span>
-            <span *ngIf="runMl">Обучающая выборка расчитана (Machine learning)</span>
+            <span *ngIf="!runMl">Расcчитать обучающую выборку (Machine learning)</span>
+            <span *ngIf="runMl">Обучающая выборка расcчитана (Machine learning)</span>
         </button>
         <div [hidden]="!trainMl" class="col-md-6">
             <br>
             <label>К - коэффициент жесткости массива грунта, МН/м3</label>
-            <input type="number" class="form-control" [(ngModel)]="firstParameter">
+            <input type="number" min="0" max="5000" step="1" class="form-control" [(ngModel)]="firstParameter">
             <br>
             <label>е - коэффициент пористости грунта</label>
-            <input type="number" class="form-control" [(ngModel)]="secondParameter">
+            <input type="number" min="0" max="1.3" step="0.1" class="form-control" [(ngModel)]="secondParameter">
             <br>
             <label>d50 - средний диаметр частиц грунта, м</label>
-            <input type="number" class="form-control" [(ngModel)]="thirdParameter">
+            <input type="number" min="0.0001" max="0.01" step="0.0001" class="form-control" [(ngModel)]="thirdParameter">
             <br>
             <label *ngIf="runMl1">Gdmax = {{runMl1.output[0]}}</label>
             <br>
             <label *ngIf="middleRunMl">Среднее среднеквадратичное отклонение = {{middleRunMl}}</label>
             <br>
-            <button class="btn btn-default btn-md" [disabled]="firstParameter===null || secondParameter===null || thirdParameter===null" (click)="myselfRunMlNeuro()">
-                <span>Расчитать Gdmax (Machine learning)</span>
+            <button class="btn btn-default btn-md" [disabled]="firstParameter>5000 || firstParameter<0 || secondParameter>1.3 || secondParameter<0 || thirdParameter<0.0001 || thirdParameter>0.1 || firstParameter===null || secondParameter===null || thirdParameter===null"
+                (click)="myselfRunMlNeuro()">
+                <span>Расcчитать Gdmax (Machine learning)</span>
             </button>
         </div>
     </p-accordionTab>
@@ -72,68 +73,77 @@
             <span *ngIf="trainNeataptic">Нейронная сеть обучена (Neataptic)</span>
         </button>
         <button [hidden]="!trainNeataptic" [disabled]="runNeataptic" class="btn btn-default btn-md" (click)="runNeatapticNeuro()">
-            <span *ngIf="!runNeataptic">Расчитать обучающую выборку (Neataptic)</span>
-            <span *ngIf="runNeataptic">Обучающая выборка расчитана (Neataptic)</span>
+            <span *ngIf="!runNeataptic">Раcсчитать обучающую выборку (Neataptic)</span>
+            <span *ngIf="runNeataptic">Обучающая выборка расcчитана (Neataptic)</span>
         </button>
 
         <div [hidden]="!trainNeataptic" class="col-md-6">
             <br>
             <label>К - коэффициент жесткости массива грунта, МН/м3</label>
-            <input type="number" class="form-control" [(ngModel)]="firstParameter">
+            <input type="number" min="0" max="5000" step="1" class="form-control" [(ngModel)]="firstParameter">
             <br>
             <label>е - коэффициент пористости грунта</label>
-            <input type="number" class="form-control" [(ngModel)]="secondParameter">
+            <input type="number" min="0" max="1.3" step="0.1" class="form-control" [(ngModel)]="secondParameter">
             <br>
             <label>d50 - средний диаметр частиц грунта, м</label>
-            <input type="number" class="form-control" [(ngModel)]="thirdParameter">
+            <input type="number" min="0.0001" max="0.01" step="0.0001" class="form-control" [(ngModel)]="thirdParameter">
             <br>
             <label *ngIf="runNeataptic1">Gdmax = {{runNeataptic1.output[0]}}</label>
             <br>
             <label *ngIf="middleRunNeataptic">Среднее среднеквадратичное отклонение = {{middleRunNeataptic}}</label>
             <br>
-            <button class="btn btn-default btn-md" [disabled]="firstParameter===null || secondParameter===null || thirdParameter===null" (click)="myselfRunNeatapticNeuro()">
-                <span>Расчитать Gdmax (Neataptic)</span>
+            <button class="btn btn-default btn-md" [disabled]="firstParameter>5000 || firstParameter<0 || secondParameter>1.3 || secondParameter<0 || thirdParameter<0.0001 || thirdParameter>0.1 || firstParameter===null || secondParameter===null || thirdParameter===null"
+                (click)="myselfRunNeatapticNeuro()">
+                <span>Расcчитать Gdmax (Neataptic)</span>
             </button>
         </div>
     </p-accordionTab>
-    <p-accordionTab header="Общие данные" [selected]="true">
-            <div class="row">
-        <div class="col col-12">
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                        <th class="text-center" scope="col">К - коэффициент жесткости массива грунта, МН/м3</th>
-                        <th class="text-center" scope="col">е - коэффициент пористости грунта</th>
-                        <th class="text-center" scope="col">d50 - средний диаметр частиц грунта, м</th>
-                        <th class="text-center red" scope="col">Gdmax - максимальное дилатантное напряжение, МН/м2</th>
-                        <th class="text-center" style="background-color: red;" *ngIf="runBrain" scope="col">Gdmax (Brain)</th>
-                        <th class="text-center" style="background-color: red;" *ngIf="runBrain" scope="col">Среднеквадратичное отклонение (Brain)</th>
-                        <th class="text-center" style="background-color: black; color: white;" *ngIf="runMl" scope="col">Gdmax (Machine learning)</th>
-                        <th class="text-center" style="background-color: black; color: white;" *ngIf="runMl" scope="col">Среднеквадратичное отклонение (Machine learning)</th>
-                        <th class="text-center" style="background-color: green;" *ngIf="runNeataptic" scope="col">Gdmax (Neataptic)</th>
-                        <th class="text-center" style="background-color: green;" *ngIf="runNeataptic" scope="col">Среднеквадратичное отклонение (Neataptic)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let da of data; let i = index;">
-                        <th class="text-center">{{da.input[0]}}</th>
-                        <td class="text-center">{{da.input[1]}}</td>
-                        <td class="text-center">{{da.input[2]}}</td>
-                        <td class="text-center red">{{da.output[0]}}</td>
-                        <td class="text-center" style="background-color: red;" *ngIf="runBrain">{{runBrain.output[i]}}</td>
-                        <td class="text-center" style="background-color: red;" *ngIf="runBrain">{{runBrain.deviation[i]}}</td>
-                        <td class="text-center" style="background-color: black; color: white;" *ngIf="runMl">{{runMl.output[i][0].toFixed(5)}}</td>
-                        <td class="text-center" style="background-color: black; color: white;" *ngIf="runMl">{{runMl.deviation[i]}}</td>
-                        <td class="text-center" style="background-color: green;" *ngIf="runNeataptic">{{runNeataptic.output[i]}}</td>
-                        <td class="text-center" style="background-color: green;" *ngIf="runNeataptic">{{runNeataptic.deviation[i]}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-12">
-            <p-chart type="line" [data]="datas" (onDataSelect)="selectData($event)"></p-chart>
-        </div>
+    <p-accordionTab header="Результаты" [selected]="true">
+        <div class="row">
+            <div class="col col-12">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">К - коэффициент жесткости массива грунта, МН/м3</th>
+                            <th class="text-center" scope="col">е - коэффициент пористости грунта</th>
+                            <th class="text-center" scope="col">d50 - средний диаметр частиц грунта, м</th>
+                            <th class="text-center red" scope="col">Gdmax - максимальное дилатантное напряжение, МН/м2</th>
+                            <th class="text-center" style="background-color: rgb(176, 180, 137);" *ngIf="runBrain" scope="col">Gdmax (Brain)</th>
+                            <th class="text-center" style="background-color: rgb(176, 180, 137);" *ngIf="runBrain" scope="col">Среднеквадратичное отклонение (Brain)</th>
+                            <th class="text-center" style="background-color: rgb(158, 133, 163);" *ngIf="runMl" scope="col">Gdmax (Machine learning)</th>
+                            <th class="text-center" style="background-color: rgb(158, 133, 163);" *ngIf="runMl" scope="col">Среднеквадратичное отклонение (Machine learning)</th>
+                            <th class="text-center" style="background-color: rgb(114, 143, 114);" *ngIf="runNeataptic" scope="col">Gdmax (Neataptic)</th>
+                            <th class="text-center" style="background-color: rgb(114, 143, 114);" *ngIf="runNeataptic" scope="col">Среднеквадратичное отклонение (Neataptic)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let da of data; let i = index;">
+                            <th class="text-center">{{da.input[0]}}</th>
+                            <td class="text-center">{{da.input[1]}}</td>
+                            <td class="text-center">{{da.input[2]}}</td>
+                            <td class="text-center red">{{da.output[0]}}</td>
+                            <td class="text-center" style="background-color: rgb(176, 180, 137);" *ngIf="runBrain">{{runBrain.output[i]}}</td>
+                            <td class="text-center" style="background-color: rgb(176, 180, 137);" *ngIf="runBrain">{{runBrain.deviation[i]}}</td>
+                            <td class="text-center" style="background-color: rgb(158, 133, 163);" *ngIf="runMl">{{runMl.output[i][0].toFixed(5)}}</td>
+                            <td class="text-center" style="background-color: rgb(158, 133, 163);" *ngIf="runMl">{{runMl.deviation[i]}}</td>
+                            <td class="text-center" style="background-color: rgb(114, 143, 114);" *ngIf="runNeataptic">{{runNeataptic.output[i]}}</td>
+                            <td class="text-center" style="background-color: rgb(114, 143, 114);" *ngIf="runNeataptic">{{runNeataptic.deviation[i]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+            <div class="col-1">
+                <label>Gdmax и расчитанный результат</label>
+            </div>
+            <div class="col-10">
+                <p-chart type="line" [data]="datas" (onDataSelect)="selectData($event)"></p-chart>
+            </div>
+            <div class="col-1">
+            </div>
+            <div class="col-12 text-center">
+                Порядковый номер
+            </div>
+        </div>
     </p-accordionTab>
 </p-accordion>
 
